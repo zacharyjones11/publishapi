@@ -1,4 +1,4 @@
-@renderUrl = https://your-render-service.onrender.com
+@renderUrl = https://publishapi-0h1y.onrender.com
 
 ### Get all contacts from Render
 GET {{renderUrl}}/contacts
