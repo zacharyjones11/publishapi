@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:3000
+
+### Get all contacts
+GET {{baseUrl}}/contacts
+
+### Get one contact
+GET {{baseUrl}}/contacts/by-id?id=6ab716d21787ccacb387abb2
