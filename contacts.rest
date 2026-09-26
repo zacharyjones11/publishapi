@@ -1,7 +1,7 @@
-@baseUrl = http://localhost:3000
+@renderUrl = https://your-render-service.onrender.com
 
-### Get all contacts
-GET {{baseUrl}}/contacts
+### Get all contacts from Render
+GET {{renderUrl}}/contacts
 
 ### Get one contact
-GET {{baseUrl}}/contacts/by-id?id=6ab716d21787ccacb387abb2
+GET {{renderUrl}}/contacts/by-id?id=6ab716d21787ccacb387abb2
