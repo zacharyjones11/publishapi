@@ -1,28 +1,43 @@
+@localUrl = http://localhost:3000
 @renderUrl = https://publishapi-0h1y.onrender.com
+@contactId = 6abc646bb7c0ac635aeb9004
+@deleteId = REPLACE_WITH_ID_TO_DELETE
+
+### Get all contacts locally
+GET {{localUrl}}/contacts
 
 ### Get all contacts from Render
 GET {{renderUrl}}/contacts
 
-### Get one contact
-GET {{renderUrl}}/contacts/by-id?id=6ab716d21787ccacb387abb2
+### Get one contact locally
+GET {{localUrl}}/contacts/by-id?id={{contactId}}
 
-@localUrl = http://localhost:3000
+### Get one contact from Render
+GET {{renderUrl}}/contacts/by-id?id={{contactId}}
 
-### Create a new contact
+### Create a new contact locally
 POST {{localUrl}}/contacts
 Content-Type: application/json
 
-### Update one contact
-PUT {{localUrl}}/contacts/6abc646bb7c0ac635aeb9004
-Content-Type: application/json
+{
+  "firstName": "Jordan",
+  "lastName": "Smith",
+  "email": "jordan@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "2002-08-20"
+}
 
-### Delete duplicate contact
-DELETE {{localUrl}}/contacts/6abc646bb7c0ac635aeb9004
+### Update a contact locally
+PUT {{localUrl}}/contacts/{{contactId}}
+Content-Type: application/json
 
 {
   "firstName": "Maya",
   "lastName": "Rivera",
   "email": "maya.updated@example.com",
-  "favoriteColor": "green",
+  "favoriteColor": "Green",
   "birthday": "2001-06-12"
 }
+
+### Delete a contact locally
+DELETE {{localUrl}}/contacts/{{deleteId}}
