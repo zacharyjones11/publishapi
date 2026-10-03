@@ -12,17 +12,20 @@ GET {{renderUrl}}/contacts/by-id?id=6abc646bb7c0ac635aeb9004
 POST {{localUrl}}/contacts
 Content-Type: application/json
 
-### Update one contact
-PUT {{localUrl}}/contacts/6abc646bb7c0ac635aeb9004
-Content-Type: application/json
-
-### Delete duplicate contact
-DELETE {{localUrl}}/contacts/6abc646bb7c0ac635aeb9004
-
 {
-  "firstName": "Maya",
-  "lastName": "Rivera",
-  "email": "maya.updated@example.com",
+  "firstName": "Conner",
+  "lastName": "Smith",
+  "email": "csmith.updated@example.com",
   "favoriteColor": "green",
   "birthday": "2001-06-12"
 }
+
+### Update one contact
+PUT {{localUrl}}/contacts/6ac122b0c3d900fbb031acbc
+Content-Type: application/json
+
+
+### Delete duplicate contact
+DELETE {{localUrl}}/contacts/6ac122b0c3d900fbb031acbc
+
+
