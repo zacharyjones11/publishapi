@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Contacts API",
+    "version": "1.0.0",
+    "description": "API for retrieving and managing contacts."
+  },
+  "servers": [
+    {
+      "url": "https://publishapi-0h1y.onrender.com"
+    }
+  ],
+  "paths": {
+  "/contacts": {
+    "get": {
+      "summary": "Get all contacts",
+      "tags": ["Contacts"],
+      "responses": {
+        "200": {
+          "description": "A list of contacts",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          }
+        }
+      }
+    }, "post": {
+  "summary": "Create a contact",
+  "tags": ["Contacts"],
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "$ref": "#/components/schemas/Contact"
+        }
+      }
+    }
+  },
+  "responses": {
+    "201": {
+      "description": "Contact created; returns its new ID",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["id"]
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "Required contact fields are missing"
+    },
+    "500": {
+      "description": "Server error"
+    }
+  }
+}
+  },
+  "/contacts/by-id": {
+  "get": {
+    "summary": "Get one contact by ID",
+    "tags": ["Contacts"],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "query",
+        "required": true,
+        "description": "MongoDB ID of the contact",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "The matching contact",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Contact"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "The ID is missing or invalid"
+      },
+      "404": {
+        "description": "No contact matches this ID"
+      }
+    }
+  }
+}, "/contacts/{id}": {
+  "put": {
+    "summary": "Update a contact",
+    "tags": ["Contacts"],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "MongoDB ID of the contact to update",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Contact"
+          }
+        }
+      }
+    },
+    "responses": {
+      "204": {
+        "description": "Contact updated successfully"
+      },
+      "400": {
+        "description": "The ID is invalid"
+      },
+      "404": {
+        "description": "No contact matches this ID"
+      },
+      "500": {
+        "description": "Server error"
+      }
+    }
+  }
+, "delete": {
+  "summary": "Delete a contact",
+  "tags": ["Contacts"],
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "description": "MongoDB ID of the contact to delete",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Contact deleted",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": ["message"]
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "The ID is invalid"
+    },
+    "404": {
+      "description": "No contact matches this ID"
+    },
+    "500": {
+      "description": "Server error"
+    }
+  }
+}
+}
+},
+  "components": {
+    "schemas": {
+  "Contact": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string",
+        "readOnly": true
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "favoriteColor": {
+        "type": "string"
+      },
+      "birthday": {
+        "type": "string",
+        "format": "date"
+      }
+    },
+    "required": [
+      "_id",
+      "firstName",
+      "lastName",
+      "email",
+      "favoriteColor",
+      "birthday"
+    ]
+  }
+}
+  }
+}
